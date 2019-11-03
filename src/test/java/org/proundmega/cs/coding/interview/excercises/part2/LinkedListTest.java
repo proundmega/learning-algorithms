@@ -76,4 +76,23 @@ public class LinkedListTest {
         Node returnNode = linkedList.remove(0);
         assertTrue(returnNode.isNull());
     }
+    
+    @Test
+    public void testDeleteNodeByRef() {
+        LinkedList<Integer> expected = new LinkedList<>(Arrays.asList(
+                3, 8, 120, 871, 26, 281, 62, 81
+        ));
+        
+        LinkedList<Integer> actual = new LinkedList<>(Arrays.asList(
+                3, 8, 120, 871, 26, 281, 62, 2, 81
+        ));
+        
+        Node<Integer> nodeToDelete = actual.getNodeByPosition(7);
+        assertEquals(2, nodeToDelete.getValue().intValue());
+        
+        // time to delete this node
+        actual.removeNode(nodeToDelete);
+        
+        assertEquals(expected, actual);
+    }
 }
